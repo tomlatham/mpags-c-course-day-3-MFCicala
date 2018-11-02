@@ -61,15 +61,16 @@ std::string CaesarCipher::applyCipher (std::string inputText, CipherMode mode) c
 	switch (mode) {
 	case CipherMode::encrypt:
 	  processedChar = alphabet_[ (i + truncatedKey) % alphabetSize_ ];
+	  break;
 	case CipherMode::decrypt:
 	  processedChar = alphabet_[ (i + alphabetSize_ - truncatedKey) % alphabetSize_ ];
 	  break;
 	}
       }
-      
-      // Add the new character to the output text
-      outputText += processedChar;
-    }
+    }  
+    // Add the new character to the output text
+    outputText += processedChar;
+    
     
   }
   return outputText;

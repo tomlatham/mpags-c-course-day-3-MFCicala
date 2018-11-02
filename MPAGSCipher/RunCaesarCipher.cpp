@@ -5,6 +5,8 @@
 
 // Our project headers
 #include "RunCaesarCipher.hpp"
+#include "CaesarCipher.hpp"
+
 
 std::string runCaesarCipher( const std::string& inputText, const size_t key, const bool encrypt )
 {
@@ -15,8 +17,11 @@ std::string runCaesarCipher( const std::string& inputText, const size_t key, con
   const std::vector<char> alphabet = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
   const size_t alphabetSize = alphabet.size();
 
+  CaesarCipher NumberCipher (key);
+
   // Make sure that the key is in the range 0 - 25
-  const size_t truncatedKey { key % alphabetSize };
+  const size_t truncatedKey { NumberCipher.key_ % alphabetSize };
+
 
   // Loop over the input text
   char processedChar {'x'};

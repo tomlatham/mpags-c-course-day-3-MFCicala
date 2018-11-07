@@ -7,7 +7,7 @@
 TEST_CASE("Arguments for help are processed correctly", "[alphanumeric]")
 {
 
-  std::vector<std::string> args{"-h","--help"};
+  std::vector<std::string> args{"","-h","--help"};
   ProgramSettings arguments;
   REQUIRE(processCommandLine(args, arguments) == true);
   REQUIRE(arguments.helpRequested == true);
@@ -16,7 +16,7 @@ TEST_CASE("Arguments for help are processed correctly", "[alphanumeric]")
 TEST_CASE("Argument for version is processed correctly", "[alphanumeric]")
 {
 
-  std::vector<std::string> args{"--version"};
+  std::vector<std::string> args{"","--version"};
   ProgramSettings arguments;
   REQUIRE(processCommandLine(args, arguments) == true);
   REQUIRE(arguments.versionRequested == true);
@@ -25,7 +25,7 @@ TEST_CASE("Argument for version is processed correctly", "[alphanumeric]")
 TEST_CASE("Arguments for input file are processed correctly", "[alphanumeric]")
 {
 
-  std::vector<std::string> args{"-i","InputFile"};
+  std::vector<std::string> args{"","-i","InputFile"};
   ProgramSettings arguments;
   REQUIRE(processCommandLine(args, arguments) == true);
   REQUIRE(arguments.inputFile == "InputFile");
@@ -34,7 +34,7 @@ TEST_CASE("Arguments for input file are processed correctly", "[alphanumeric]")
 TEST_CASE("Arguments for output file are processed correctly", "[alphanumeric]")
 {
 
-  std::vector<std::string> args{"-o", "OutputFile"};
+  std::vector<std::string> args{"","-o", "OutputFile"};
   ProgramSettings arguments;
   REQUIRE(processCommandLine(args, arguments) == true);
   REQUIRE(arguments.outputFile == "OutputFile");
@@ -43,7 +43,7 @@ TEST_CASE("Arguments for output file are processed correctly", "[alphanumeric]")
 TEST_CASE("Argument for key is  processed correctly", "[alphanumeric]")
 {
 
-  std::vector<std::string> args{"-k","6"};
+  std::vector<std::string> args{"","-k","6"};
   ProgramSettings arguments;
   REQUIRE(processCommandLine(args, arguments) == true);
   REQUIRE(arguments.cipher_key == "6");
@@ -52,7 +52,7 @@ TEST_CASE("Argument for key is  processed correctly", "[alphanumeric]")
 TEST_CASE("Argument for encryption is processed correctly", "[alphanumeric]")
 {
 
-  std::vector<std::string> args{"--encrypt"};
+  std::vector<std::string> args{"","--encrypt"};
   ProgramSettings arguments;
   REQUIRE(processCommandLine(args, arguments) == true);
   REQUIRE(arguments.mode == CipherMode::encrypt);
@@ -61,7 +61,7 @@ TEST_CASE("Argument for encryption is processed correctly", "[alphanumeric]")
 TEST_CASE("Argument for decryption is processed correctly", "[alphanumeric]")
 {
 
-  std::vector<std::string> args{"--decrypt"};
+  std::vector<std::string> args{"","--decrypt"};
   ProgramSettings arguments;
   REQUIRE(processCommandLine(args, arguments) == true);
   REQUIRE(arguments.mode == CipherMode::decrypt);

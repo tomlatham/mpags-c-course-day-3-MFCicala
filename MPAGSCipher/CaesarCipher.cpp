@@ -6,12 +6,12 @@
 // Our project headers
 #include "CaesarCipher.hpp"
 
-CaesarCipher::CaesarCipher( const size_t key)
-  : key_{key}
+CaesarCipher::CaesarCipher( const size_t key )
+  : key_{key % alphabetSize_}
 {}
 
-CaesarCipher::CaesarCipher( const std::string key)
-  
+CaesarCipher::CaesarCipher( const std::string& key )
+  : key_{0}
 {
   if ( ! key.empty() ) {
     // Before doing the conversion we should check that the string contains a                             
@@ -28,22 +28,18 @@ CaesarCipher::CaesarCipher( const std::string key)
     for ( const auto& elem : key ) {
       if ( ! std::isdigit(elem) ) {
 	std::cerr << "[error] cipher key must be an unsigned long integer for Caesar cipher,\n"
-                  << "        the supplied key (" << key << ") could not be successfully\
- converted" << std::endl;
+                  << "        the supplied key (" << key << ") could not be successfully converted" << std::endl;
         return ;
       }
     }
-    key_ = std::stoul(key);
+    key_ = std::stoul(key) % alphabetSize_;
   }
 }
 
-std::string CaesarCipher::applyCipher (std::string inputText, CipherMode mode) const
+std::string CaesarCipher::applyCipher ( const std::string& inputText, const CipherMode mode) const
 {
   // Create the output string
   std::string outputText {};
-  
-  // Make sure that the key is in the range 0 - 25
-  const size_t truncatedKey { key_ % alphabetSize_ };
   
   // Loop over the input text
   char processedChar {'x'};
@@ -59,11 +55,11 @@ std::string CaesarCipher::applyCipher (std::string inputText, CipherMode mode) c
 	// or decrypting) and determine the new character
 	// Can then break out of the loop over the alphabet
 	switch (mode) {
-	case CipherMode::encrypt:
-	  processedChar = alphabet_[ (i + truncatedKey) % alphabetSize_ ];
+	case CipherMode::Encrypt:
+	  processedChar = alphabet_[ (i + key_) % alphabetSize_ ];
 	  break;
-	case CipherMode::decrypt:
-	  processedChar = alphabet_[ (i + alphabetSize_ - truncatedKey) % alphabetSize_ ];
+	case CipherMode::Decrypt:
+	  processedChar = alphabet_[ (i + alphabetSize_ - key_) % alphabetSize_ ];
 	  break;
 	}
       }

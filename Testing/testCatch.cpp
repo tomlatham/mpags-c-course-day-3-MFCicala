@@ -10,5 +10,5 @@ REQUIRE(1 + 1 == 2);
 
 TEST_CASE("Subtraction works", "[math]")
 {
-REQUIRE(1 - 1 == 1);
+REQUIRE(2 - 1 == 1);
 }

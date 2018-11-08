@@ -29,10 +29,7 @@ TEST_CASE("Digits are transliterated", "[alphanumeric]")
   REQUIRE(transformChar('9')=="NINE");
 }
 
-//Don''t know how to test to remove special characters...
-
-/*TEST_CASE("Special characters are removed","[punctuation]")
+TEST_CASE("Special characters are removed","[punctuation]")
 {
-  REQUIRE(transformChar('.')=='');
-}*/
-
+  REQUIRE(transformChar('.')=="");
+}

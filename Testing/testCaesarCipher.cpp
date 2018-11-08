@@ -4,42 +4,39 @@
 
 #include "CaesarCipher.hpp"
 
-TEST_CASE("Text is encrypted with key passed as a string", "[alphanumeric]")
+TEST_CASE("Text is encrypted with key passed as a string", "[caesar]")
 {
   const std::string key{"16"};
   std::string inputText{"HELLOWORLD"};
   CaesarCipher MyCipher(key);
-
-  //arguments.mode = CipherMode::encrypt
-
-  CipherMode mode{CipherMode::encrypt};
+  CipherMode mode{CipherMode::Encrypt};
   REQUIRE(MyCipher.applyCipher(inputText, mode)=="XUBBEMEHBT");
 }
 
-TEST_CASE("Text is encrypted with key passed as a number", "[alphanumeric]")
+TEST_CASE("Text is encrypted with key passed as a number", "[caesar]")
 {
   const size_t key{16};
   std::string inputText{"HELLOWORLD"};
   CaesarCipher MyCipher(key);
-  CipherMode mode{CipherMode::encrypt};
+  CipherMode mode{CipherMode::Encrypt};
   REQUIRE(MyCipher.applyCipher(inputText, mode)=="XUBBEMEHBT");
 }
 
-TEST_CASE("Text is decrypted with key passed as a string", "[alphanumeric]")
+TEST_CASE("Text is decrypted with key passed as a string", "[caesar]")
 {
   const std::string key{"16"};
   std::string inputText{"XUBBEMEHBT"};
   CaesarCipher MyCipher(key);
-  CipherMode mode{CipherMode::decrypt};
+  CipherMode mode{CipherMode::Decrypt};
   REQUIRE(MyCipher.applyCipher(inputText, mode)=="HELLOWORLD");
 }
 
-TEST_CASE("Text is decrypted with key passed as a number", "[alphanumeric]")
+TEST_CASE("Text is decrypted with key passed as a number", "[caesar]")
 {
   const size_t key{16};
   std::string inputText{"XUBBEMEHBT"};
   CaesarCipher MyCipher(key);
-  CipherMode mode{CipherMode::decrypt};
+  CipherMode mode{CipherMode::Decrypt};
   REQUIRE(MyCipher.applyCipher(inputText, mode)=="HELLOWORLD");
 }
 
